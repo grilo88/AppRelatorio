@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:datagrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
+             mc:Ignorable="d"
+             x:Class="AppRelatorio.View.BancoDeDadosView">
+    <StackLayout Padding="0" Spacing="0">
+        <SearchBar Placeholder="Pesquisar em todas as colunas"/>
+        <!--<autocomplete:SfAutoComplete/>-->
+        <StackLayout>
+            <datagrid:SfDataGrid x:Name="DataGrid" 
+                             ItemsSource="{Binding ListaPublicadorDetalhes}"
+                             AutoGenerateColumns="True"
+                             ColumnSizer="Auto"
+                             AllowResizingColumn="True"
+                             SelectionMode="Single"
+                             AllowEditing="True"
+                             AllowSorting="True"
+                             AllowDeleting="True"
+                             FrozenColumnsCount="2"
+                             >
+                <datagrid:SfDataGrid.GroupColumnDescriptions>
+                    <datagrid:GroupColumnDescription ColumnName="Atribuicao" />
+                </datagrid:SfDataGrid.GroupColumnDescriptions>
+            </datagrid:SfDataGrid>
+        </StackLayout>
+    </StackLayout>  
+</ContentPage>
