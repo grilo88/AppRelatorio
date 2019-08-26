@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.Data.Sqlite;
 using AppRelatorio.Atributos;
 using AppRelatorio.Banco;
+using AppRelatorio.Enumerador;
 
 namespace AppRelatorio.Model
 {
@@ -18,10 +19,12 @@ namespace AppRelatorio.Model
         public string Nome { get; set; }
         [Indexed(Name = "Idx_Nome_Sobrenome")]
         public string Sobrenome { get; set; }
+        public SituacaoPublicadorEnum Situacao { get; set; } = SituacaoPublicadorEnum.Ativo;
         public string Email { get; set; }
         public long? Telefone { get; set; }
         public DateTime Nascimento { get; set; }
         public string Atribuicao { get; set; }
+        
 
         //public static Publicador Obter(int Id)
         //{

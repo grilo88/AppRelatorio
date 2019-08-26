@@ -9,6 +9,7 @@ using System.Reflection;
 using AppRelatorio.Banco;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using AppRelatorio.Atributos;
 
 namespace AppRelatorio.Model
 {
@@ -29,12 +30,15 @@ namespace AppRelatorio.Model
         private int revisitas;
         private int estudos;
         private string observacao;
+        private string situacao;
         #endregion
 
         #region Propriedades Públicas
+        [Hidden]
         public long IdPublicador { get => idPublicador; set { idPublicador = value; OnPropertyChanged(); } }
         public string Nome { get => nome; set { nome = value; OnPropertyChanged(); } }
         public string Sobrenome { get => sobrenome; set { sobrenome = value; OnPropertyChanged(); } }
+        public string Situacao { get => situacao; set { situacao = value; OnPropertyChanged(); } }
         public string Email { get => email; set { email = value; OnPropertyChanged(); } }
         public long? Telefone { get => telefone; set { telefone = value; OnPropertyChanged(); } }
         public DateTime Nascimento { get => nascimento; set { nascimento = value; OnPropertyChanged(); } }
@@ -73,7 +77,7 @@ namespace AppRelatorio.Model
             {
                 con.Open();
                 StringBuilder sb = new StringBuilder();
-                sb.Append("SELECT PUB.Id AS IdPublicador,Nome,Sobrenome,Email,Telefone,Nascimento,PUB.Atribuicao,MesRef,Publicacoes,Videos,Horas,Revisitas,Estudos,Observacao ");
+                sb.Append("SELECT PUB.Id AS IdPublicador,Nome,Sobrenome,Situacao,Email,Telefone,Nascimento,PUB.Atribuicao,MesRef,Publicacoes,Videos,Horas,Revisitas,Estudos,Observacao ");
                 sb.Append("FROM Publicador AS PUB ");
                 sb.Append("LEFT JOIN Relatorio AS REL ON REL.IdPublicador = PUB.Id ");
 

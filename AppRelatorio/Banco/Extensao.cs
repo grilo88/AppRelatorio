@@ -29,7 +29,17 @@ namespace AppRelatorio.Banco
             }
 
             string typeDB;
-            if (dataType == typeof(string))
+            if (dataType.BaseType == typeof(Enum))
+            {
+                var p = dataType.BaseType.GetProperty("DeclaredFields");
+
+                // TODO: Obter o primeiro item da array que contém o tipo de dados do enum
+                // e jogar no datatype lá do começo do método
+
+                //dataType.DeclaredFields
+                typeDB = "";
+            }
+            else if (dataType == typeof(string))
                 typeDB = "Varchar";
             else if (dataType == typeof(Int16))
                 typeDB = pk ? "Integer" : "Smallint";
@@ -105,6 +115,26 @@ namespace AppRelatorio.Banco
             {
                 com.CommandText = $"SELECT 1 FROM sqlite_master WHERE type='table' AND name='{table_name}';";
                 return com.ExecuteScalar() != null;
+            }
+        }
+
+        public static void ExcluirTabela<T>(this SqliteConnection con)
+        {
+            string table_name = typeof(T).Name;
+            using (SqliteCommand com = con.CreateCommand())
+            {
+                com.CommandText = $"DROP TABLE '{table_name}';";
+                com.ExecuteScalar();
+            }
+        }
+
+        public static void TruncarTabela<T>(this SqliteConnection con)
+        {
+            string table_name = typeof(T).Name;
+            using (SqliteCommand com = con.CreateCommand())
+            {
+                com.CommandText = $"DELETE FROM '{table_name}';";
+                com.ExecuteScalar();
             }
         }
     }

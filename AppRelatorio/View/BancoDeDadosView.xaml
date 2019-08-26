@@ -3,16 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:datagrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             xmlns:sfgrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
              xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
+             xmlns:estilo="clr-namespace:AppRelatorio.Estilos"
+             xmlns:vm="clr-namespace:AppRelatorio.ViewModel"
              mc:Ignorable="d"
              x:Class="AppRelatorio.View.BancoDeDadosView">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <estilo:DataGridEscuro x:Key="DataGridEscuro" />
+        </ResourceDictionary>
+
+        <DataTemplate x:Key="baixo" >
+            <Label Text="{Binding Horas}"
+                   TextColor="White" 
+                   BackgroundColor="Red" 
+                   HorizontalTextAlignment="Center" 
+                   VerticalTextAlignment="Center" />
+        </DataTemplate>
+        <DataTemplate x:Key="medio" >
+            <Label Text="{Binding Horas}"
+                   TextColor="Black" 
+                   BackgroundColor="Yellow" 
+                   HorizontalTextAlignment="Center" 
+                   VerticalTextAlignment="Center" />
+        </DataTemplate>
+        <DataTemplate x:Key="alto" >
+            <Label Text="{Binding Horas}" 
+                   TextColor="White" 
+                   BackgroundColor="Green" 
+                   HorizontalTextAlignment="Center" 
+                   VerticalTextAlignment="Center" />
+        </DataTemplate>
+
+    </ContentPage.Resources>
+
+
     <StackLayout Padding="0" Spacing="0">
         <SearchBar Placeholder="Pesquisar em todas as colunas"/>
         <!--<autocomplete:SfAutoComplete/>-->
         <StackLayout>
-            <datagrid:SfDataGrid x:Name="DataGrid" 
+            <sfgrid:SfDataGrid x:Name="DataGrid" 
                              ItemsSource="{Binding ListaPublicadorDetalhes}"
+                             GridStyle="{StaticResource DataGridEscuro}"
                              AutoGenerateColumns="True"
                              ColumnSizer="Auto"
                              AllowResizingColumn="True"
@@ -20,12 +54,23 @@
                              AllowEditing="True"
                              AllowSorting="True"
                              AllowDeleting="True"
-                             FrozenColumnsCount="2"
                              >
-                <datagrid:SfDataGrid.GroupColumnDescriptions>
-                    <datagrid:GroupColumnDescription ColumnName="Atribuicao" />
-                </datagrid:SfDataGrid.GroupColumnDescriptions>
-            </datagrid:SfDataGrid>
+
+                <sfgrid:SfDataGrid.GroupColumnDescriptions>
+                    <sfgrid:GroupColumnDescription ColumnName="Atribuicao" />
+                </sfgrid:SfDataGrid.GroupColumnDescriptions>
+
+                <sfgrid:SfDataGrid.Columns>
+                    <sfgrid:GridTemplateColumn MappingName="Horas" >
+                        <sfgrid:GridTemplateColumn.CellTemplateSelector>
+                            <vm:FormatacaoCondicionalHorasFreightTemplateSelector 
+                                Alto="{StaticResource alto}"
+                                Medio="{StaticResource medio}"
+                                Baixo="{StaticResource baixo}"/>
+                        </sfgrid:GridTemplateColumn.CellTemplateSelector>
+                    </sfgrid:GridTemplateColumn>
+                </sfgrid:SfDataGrid.Columns>
+            </sfgrid:SfDataGrid>
         </StackLayout>
-    </StackLayout>  
+    </StackLayout>
 </ContentPage>

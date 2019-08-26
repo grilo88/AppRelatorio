@@ -26,9 +26,17 @@ namespace AppRelatorio.Banco
             {
                 con.Open();
 
-                if (!con.TabelaExiste<Login>()) con.CriarTabela<Login>();
-                if (!con.TabelaExiste<Publicador>()) con.CriarTabela<Publicador>();
-                if (!con.TabelaExiste<Relatorio>()) con.CriarTabela<Relatorio>();
+                if (con.TabelaExiste<Login>()) con.ExcluirTabela<Login>();
+                if (con.TabelaExiste<Relatorio>()) con.ExcluirTabela<Relatorio>();
+                if (con.TabelaExiste<Publicador>()) con.ExcluirTabela<Publicador>();
+
+                con.CriarTabela<Login>();
+                con.CriarTabela<Relatorio>();
+                con.CriarTabela<Publicador>();
+
+                //if (!con.TabelaExiste<Login>()) con.CriarTabela<Login>();
+                //if (!con.TabelaExiste<Publicador>()) con.CriarTabela<Publicador>();
+                //if (!con.TabelaExiste<Relatorio>()) con.CriarTabela<Relatorio>();
             }
         }
     }

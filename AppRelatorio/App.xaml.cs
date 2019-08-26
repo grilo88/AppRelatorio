@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using AppRelatorio.Banco;
+using Microsoft.Data.Sqlite;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

@@ -1,10 +1,12 @@
-﻿using AppRelatorio.View;
+﻿using AppRelatorio.Atributos;
+using AppRelatorio.View;
 using Syncfusion.Data;
 using Syncfusion.SfDataGrid.XForms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Xamarin.Forms;
@@ -40,14 +42,26 @@ namespace AppRelatorio.ViewModel
             DataGrid = page.FindByName<SfDataGrid>("DataGrid");
             DataGrid.GridViewCreated += DataGrid_GridViewCreated;
             DataGrid.AutoGeneratingColumn += DataGrid_AutoGeneratingColumn;
+
+            DataGrid.FrozenColumnsCount = 3;
+
             ListaPublicadorDetalhes = Model.PublicadorDetalhes.Lista();
         }
 
         private void DataGrid_AutoGeneratingColumn(object sender, AutoGeneratingColumnEventArgs e)
         {
-            if (e.Column.MappingName == "Atribuicao")
+            Type tipo = new Model.PublicadorDetalhes().GetType();
+            PropertyInfo prop = tipo.GetProperty(e.Column.MappingName);
+            if (Attribute.GetCustomAttribute(prop, typeof(HiddenAttribute)) is HiddenAttribute)
             {
+                // Oculta a coluna marcada como Hidden
+                e.Column.IsHidden = true;
+            }
 
+            // Define o texto do cabeçalho da coluna conforme o atributo de descrição
+            if (Attribute.GetCustomAttribute(prop, typeof(DescriptionAttribute)) is DescriptionAttribute description)
+            {
+                e.Column.HeaderText = description.Description;
             }
         }
 

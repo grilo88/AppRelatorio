@@ -15,7 +15,11 @@ namespace AppRelatorio.Banco
         {
             object valor = prop.GetValue(obj);
 
-            if (valor is string)
+            if (valor is DBNull || valor is null)
+            {
+                valor = "NULL";
+            }
+            else if (valor is string)
             {
                 valor = $"'{valor}'";
             }
