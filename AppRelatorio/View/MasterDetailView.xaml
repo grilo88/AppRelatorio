@@ -29,7 +29,7 @@
                     <TableSection>
                         <ViewCell x:Name="Pagina1" Tapped="Pagina1_Tapped">
                             <StackLayout>
-                                <Label Text="Página 1" VerticalTextAlignment="Center"/>
+                                <Label Text="Obra de Pregação" VerticalTextAlignment="Center"/>
                             </StackLayout>
                         </ViewCell>
 

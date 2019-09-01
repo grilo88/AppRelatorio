@@ -19,19 +19,38 @@ namespace AppRelatorio.View
             InitializeComponent();
 
             viewModel = new BancoDeDadosViewModel(this);
+            viewModel.filterTextChanged = OnFilterChanged;
+
             BindingContext = viewModel;
         }
 
-        // ListView -> ItemTapper
-        async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        //// ListView -> ItemTapper
+        //async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        //{
+        //    if (e.Item == null)
+        //        return;
+
+        //    await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
+
+        //    //Deselect Item
+        //    ((ListView)sender).SelectedItem = null;
+        //}
+
+        private void FilterText_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (e.Item == null)
-                return;
+            if (e.NewTextValue == null)
+                viewModel.FilterText = "";
+            else
+                viewModel.FilterText = e.NewTextValue;
+        }
 
-            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
-
-            //Deselect Item
-            ((ListView)sender).SelectedItem = null;
+        private void OnFilterChanged()
+        {
+            if (DataGrid.View != null)
+            {
+                this.DataGrid.View.Filter = viewModel.FilerRecords;
+                this.DataGrid.View.RefreshFilter();
+            }
         }
     }
 }

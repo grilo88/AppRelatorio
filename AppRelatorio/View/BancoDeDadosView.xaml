@@ -5,16 +5,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:sfgrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
              xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
-             xmlns:estilo="clr-namespace:AppRelatorio.Estilos"
+             xmlns:estilo="clr-namespace:AppRelatorio.Estilo"
              xmlns:vm="clr-namespace:AppRelatorio.ViewModel"
              mc:Ignorable="d"
              x:Class="AppRelatorio.View.BancoDeDadosView">
 
     <ContentPage.Resources>
-        <ResourceDictionary>
-            <estilo:DataGridEscuro x:Key="DataGridEscuro" />
-        </ResourceDictionary>
-
         <DataTemplate x:Key="baixo" >
             <Label Text="{Binding Horas}"
                    TextColor="White" 
@@ -25,14 +21,14 @@
         <DataTemplate x:Key="medio" >
             <Label Text="{Binding Horas}"
                    TextColor="Black" 
-                   BackgroundColor="Yellow" 
+                   BackgroundColor="Green" 
                    HorizontalTextAlignment="Center" 
                    VerticalTextAlignment="Center" />
         </DataTemplate>
         <DataTemplate x:Key="alto" >
             <Label Text="{Binding Horas}" 
                    TextColor="White" 
-                   BackgroundColor="Green" 
+                   BackgroundColor="Blue" 
                    HorizontalTextAlignment="Center" 
                    VerticalTextAlignment="Center" />
         </DataTemplate>
@@ -41,20 +37,14 @@
 
 
     <StackLayout Padding="0" Spacing="0">
-        <SearchBar Placeholder="Pesquisar em todas as colunas"/>
+        <SearchBar x:Name="filterText"
+            Placeholder="Pesquisar publicador"
+                   TextChanged="FilterText_TextChanged"
+                   />
         <!--<autocomplete:SfAutoComplete/>-->
         <StackLayout>
             <sfgrid:SfDataGrid x:Name="DataGrid" 
-                             ItemsSource="{Binding ListaPublicadorDetalhes}"
-                             GridStyle="{StaticResource DataGridEscuro}"
-                             AutoGenerateColumns="True"
-                             ColumnSizer="Auto"
-                             AllowResizingColumn="True"
-                             SelectionMode="Single"
-                             AllowEditing="True"
-                             AllowSorting="True"
-                             AllowDeleting="True"
-                             >
+                             ItemsSource="{Binding ListaPublicadorDetalhes}">
 
                 <sfgrid:SfDataGrid.GroupColumnDescriptions>
                     <sfgrid:GroupColumnDescription ColumnName="Atribuicao" />
@@ -63,12 +53,14 @@
                 <sfgrid:SfDataGrid.Columns>
                     <sfgrid:GridTemplateColumn MappingName="Horas" >
                         <sfgrid:GridTemplateColumn.CellTemplateSelector>
-                            <vm:FormatacaoCondicionalHorasFreightTemplateSelector 
+                            <vm:FormatacaoCondicionalHoras 
                                 Alto="{StaticResource alto}"
                                 Medio="{StaticResource medio}"
                                 Baixo="{StaticResource baixo}"/>
                         </sfgrid:GridTemplateColumn.CellTemplateSelector>
                     </sfgrid:GridTemplateColumn>
+
+
                 </sfgrid:SfDataGrid.Columns>
             </sfgrid:SfDataGrid>
         </StackLayout>

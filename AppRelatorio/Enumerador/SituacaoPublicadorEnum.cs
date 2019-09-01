@@ -9,7 +9,7 @@ namespace AppRelatorio.Enumerador
     {
         Ativo = 1,
         Inativo = 2,
-        Desassociado = 3,
-        Dissociado = 4
+        Dissociado = 3,
+        Desassociado = 4,
     }
 }

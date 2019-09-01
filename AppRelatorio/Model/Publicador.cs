@@ -23,7 +23,7 @@ namespace AppRelatorio.Model
         public string Email { get; set; }
         public long? Telefone { get; set; }
         public DateTime Nascimento { get; set; }
-        public string Atribuicao { get; set; }
+        public AtribuicaoEnum Atribuicao { get; set; } = AtribuicaoEnum.PublicadorNaoBatizado;
         
 
         //public static Publicador Obter(int Id)

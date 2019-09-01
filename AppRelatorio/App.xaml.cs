@@ -25,7 +25,6 @@ namespace AppRelatorio
                         Nome = "Maike",
                         Sobrenome = "Apolinario",
                         Email = "maike@hotmail.com",
-                        Atribuicao = "PU - Publicador",
                         Telefone = 62985485652,
                         Nascimento = DateTime.Now,
                     });
@@ -35,7 +34,6 @@ namespace AppRelatorio
                         Nome = "João",
                         Sobrenome = "Alves",
                         Email = "joao@hotmail.com",
-                        Atribuicao = "PU - Publicador",
                         Telefone = 62985485652,
                         Nascimento = DateTime.Now,
                     });
@@ -45,7 +43,6 @@ namespace AppRelatorio
                         Nome = "Rodrigo",
                         Sobrenome = "Vieira Santana",
                         Email = "rodrigo@hotmail.com",
-                        Atribuicao = "PU - Publicador",
                         Telefone = 62985485652,
                         Nascimento = DateTime.Now,
                     });
@@ -55,7 +52,6 @@ namespace AppRelatorio
                         Nome = "Guilherme",
                         Sobrenome = "Moreira de Alencar",
                         Email = "programador.alencar@hotmail.com",
-                        Atribuicao = "PU - Publicador",
                         Telefone = 62985485652,
                         Nascimento = DateTime.Now,
                     });
@@ -65,7 +61,7 @@ namespace AppRelatorio
                         Nome = "Diego",
                         Sobrenome = "Silva Sauro",
                         Email = "diego@hotmail.com",
-                        Atribuicao = "PU - Publicador",
+                        Atribuicao = Enumerador.AtribuicaoEnum.PublicadorBatizado,
                         Telefone = 62985485652,
                         Nascimento = DateTime.Now,
                     });
@@ -75,7 +71,7 @@ namespace AppRelatorio
                         Nome = "Marcos",
                         Sobrenome = "Vinícius",
                         Email = "marcos@hotmail.com",
-                        Atribuicao = "PU - Publicador",
+                        Atribuicao = Enumerador.AtribuicaoEnum.PublicadorBatizado,
                         Telefone = 62985485652,
                         Nascimento = DateTime.Now,
                     });
@@ -85,7 +81,7 @@ namespace AppRelatorio
                         Nome = "José",
                         Sobrenome = "Andrade Filho",
                         Email = "jose@hotmail.com",
-                        Atribuicao = "PU - Publicador",
+                        Atribuicao = Enumerador.AtribuicaoEnum.PioneiroAuxiliar30Horas,
                         Telefone = 62985485652,
                         Nascimento = DateTime.Now,
                     });
@@ -95,7 +91,7 @@ namespace AppRelatorio
                         Nome = "Matheus",
                         Sobrenome = "Souza Pinto",
                         Email = "matheus@hotmail.com",
-                        Atribuicao = "PU - Publicador",
+                        Atribuicao = Enumerador.AtribuicaoEnum.PioneiroAuxiliar30Horas,
                         Telefone = 62985485652,
                         Nascimento = DateTime.Now,
                     });
@@ -105,7 +101,7 @@ namespace AppRelatorio
                         Nome = "Antonio",
                         Sobrenome = "Alvares Cabral",
                         Email = "cabral@hotmail.com",
-                        Atribuicao = "PU - Publicador",
+                        Atribuicao = Enumerador.AtribuicaoEnum.PioneiroAuxiliar50Horas,
                         Telefone = 62985485652,
                         Nascimento = DateTime.Now,
                     });
@@ -115,9 +111,42 @@ namespace AppRelatorio
                         Nome = "Robson",
                         Sobrenome = "Alencar Santos",
                         Email = "rosbon@hotmail.com",
-                        Atribuicao = "PR - Pioneiro Regular",
+                        Atribuicao = Enumerador.AtribuicaoEnum.PioneiroAuxiliar50Horas,
                         Telefone = 62985485652,
                         Nascimento = DateTime.Now,
+                    });
+
+                    Model.Relatorio.Inserir(new Model.Relatorio()
+                    {
+                         Id = 1,
+                         Horas = 30
+                    });
+                    Model.Relatorio.Inserir(new Model.Relatorio()
+                    {
+                        Id = 2,
+                        Horas = 8
+                    });
+                    Model.Relatorio.Inserir(new Model.Relatorio()
+                    {
+                        Id = 3,
+                        Horas = 50
+                    });
+                    Model.Relatorio.Inserir(new Model.Relatorio()
+                    {
+                        Id = 4,
+                        Horas = 12
+                    });
+
+                    Model.Relatorio.Inserir(new Model.Relatorio()
+                    {
+                        Id = 5,
+                        Horas = 3
+                    });
+
+                    Model.Relatorio.Inserir(new Model.Relatorio()
+                    {
+                        Id = 6,
+                        Horas = 20
                     });
                 }
             }

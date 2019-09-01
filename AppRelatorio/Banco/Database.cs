@@ -4,6 +4,10 @@ using Microsoft.Data.Sqlite;
 using System.Text;
 using Xamarin.Forms;
 using AppRelatorio.Model;
+using System.Collections.ObjectModel;
+using System.Reflection;
+using System.Linq;
+using System.Data;
 
 namespace AppRelatorio.Banco
 {
@@ -39,5 +43,7 @@ namespace AppRelatorio.Banco
                 //if (!con.TabelaExiste<Relatorio>()) con.CriarTabela<Relatorio>();
             }
         }
+
+        
     }
 }

@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace AppRelatorio.ViewModel
 {
-    public class FormatacaoCondicionalHorasFreightTemplateSelector : DataTemplateSelector
+    public class FormatacaoCondicionalHoras : DataTemplateSelector
     {
         public DataTemplate Baixo { get; set; }
 
@@ -19,7 +19,7 @@ namespace AppRelatorio.ViewModel
             int value = (item as PublicadorDetalhes).Horas;
             if (value > 30)
                 return Alto;
-            else if (value > 10)
+            else if (value >= 10)
                 return Medio;
             else
                 return Baixo;

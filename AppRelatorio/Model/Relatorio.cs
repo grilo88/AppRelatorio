@@ -1,5 +1,6 @@
 ﻿using AppRelatorio.Atributos;
 using AppRelatorio.Banco;
+using AppRelatorio.Enumerador;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,6 @@ namespace AppRelatorio.Model
         public int Revisitas { get; set; }
         public int Estudos { get; set; }
         public string Observacao { get; set; }
-        public string Atribuicao { get; set; }
+        public AtribuicaoEnum Atribuicao { get; set; }
     }
 }

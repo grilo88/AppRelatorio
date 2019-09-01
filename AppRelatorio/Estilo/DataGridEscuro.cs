@@ -4,12 +4,18 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
-namespace AppRelatorio.Estilos
+namespace AppRelatorio.Estilo
 {
-    public class DataGridEscuro : DataGridStyle
+    public class DataGridEscuroStyle : DataGridStyle
     {
-        public DataGridEscuro()
+        public DataGridEscuroStyle()
         {
+        }
+
+        // Animação ao Ícone de classificação
+        public override ImageSource GetHeaderSortIndicatorDown()
+        {
+            return null;
         }
 
         public override Color GetHeaderBackgroundColor()
